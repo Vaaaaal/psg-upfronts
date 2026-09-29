@@ -10,6 +10,7 @@ import { initFooterAnimation } from './animations/footer'
 import { initNumbersAnimation } from './animations/numbers'
 import { initPanelAnimation } from './animations/panel'
 import { initImagesAnimation } from './animations/images'
+import { initPolaroidAnimation } from './animations/polaroid'
 import { initVisualItemsAnimation } from './animations/visual-items'
 import { initTitleAnimation } from './animations/title'
 import { initVSlider } from './animations/vslider'
@@ -255,4 +256,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initTitleAnimation()
     initVSlider()
     initKpisAnimation()
+    initPolaroidAnimation()
 })
