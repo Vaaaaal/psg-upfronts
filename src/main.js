@@ -18,6 +18,7 @@ import { initKpisAnimation } from './animations/kpis'
 import { initLoaderAnimation } from './animations/loader'
 import { initCursor } from './animations/cursor'
 import { initVideoModal } from './animations/video-modal'
+import { initTargetStickyAnimation } from './animations/target-sticky'
 
 function injectStyles() {
     if (document.querySelector('style[data-psg-js-styles]')) return
@@ -242,7 +243,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initViewportBreakpointReload()
     const scroll = initLenis()
     initModalControls()
-    console.log('[main] init cursor + video modal')
     initCursor()
     initVideoModal({ lenis: scroll })
     initLoaderAnimation()
@@ -257,4 +257,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initVSlider()
     initKpisAnimation()
     initPolaroidAnimation()
+    initTargetStickyAnimation()
 })

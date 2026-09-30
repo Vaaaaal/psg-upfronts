@@ -6,11 +6,7 @@ export function initCursor() {
     const cursor = document.querySelector('.cursor_wrapper')
     const trigger = document.querySelector('.hero_background_scale')
 
-    console.log('[cursor] init', { cursor, trigger })
-    if (!cursor || !trigger) {
-        console.warn('[cursor] missing element', { cursor, trigger })
-        return
-    }
+    if (!cursor || !trigger) return
 
     const isDesktop = () => window.matchMedia(DESKTOP_QUERY).matches
 

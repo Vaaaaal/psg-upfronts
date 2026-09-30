@@ -7,17 +7,11 @@ export function initVideoModal({ lenis } = {}) {
     const trigger = document.querySelector('.hero_background_scale')
     const video = modal?.querySelector('video')
 
-    console.log('[video-modal] init', { modal, trigger, video })
-    if (!modal || !trigger || !video) {
-        console.warn('[video-modal] missing element', { modal, trigger, video })
-        return
-    }
+    if (!modal || !trigger || !video) return
 
     const player = new Plyr(video)
     const heroVideo = trigger.querySelector('video')
     let hideTimer = null
-
-    console.log('[video-modal] plyr ready', { player, heroVideo })
 
     modal.style.transition = `opacity ${FADE_DURATION_MS}ms ease`
     modal.style.willChange = 'opacity'
@@ -27,8 +21,6 @@ export function initVideoModal({ lenis } = {}) {
     modal.style.pointerEvents = 'none'
 
     const open = () => {
-        console.log('[video-modal] open')
-
         if (hideTimer) {
             clearTimeout(hideTimer)
             hideTimer = null
@@ -48,8 +40,6 @@ export function initVideoModal({ lenis } = {}) {
     }
 
     const close = () => {
-        console.log('[video-modal] close')
-
         modal.style.opacity = '0'
         modal.style.visibility = 'hidden'
         modal.style.pointerEvents = 'none'
@@ -64,15 +54,11 @@ export function initVideoModal({ lenis } = {}) {
         lenis?.start()
     }
 
-    trigger.addEventListener('click', () => {
-        console.log('[video-modal] trigger click')
-        open()
-    })
+    trigger.addEventListener('click', open)
 
     document.querySelectorAll('.button_video_modal').forEach((button) => {
         button.addEventListener('click', (event) => {
             event.preventDefault()
-            console.log('[video-modal] button click')
             open()
         })
     })
