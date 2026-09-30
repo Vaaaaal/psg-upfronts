@@ -19,6 +19,7 @@ import { initLoaderAnimation } from './animations/loader'
 import { initCursor } from './animations/cursor'
 import { initVideoModal } from './animations/video-modal'
 import { initTargetStickyAnimation } from './animations/target-sticky'
+import { initManifestoHeroAnimation } from './animations/manifesto'
 
 function injectStyles() {
     if (document.querySelector('style[data-psg-js-styles]')) return
@@ -242,6 +243,7 @@ function initModalControls() {
 document.addEventListener('DOMContentLoaded', () => {
     initViewportBreakpointReload()
     const scroll = initLenis()
+    initManifestoHeroAnimation()
     initModalControls()
     initCursor()
     initVideoModal({ lenis: scroll })
