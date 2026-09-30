@@ -9,6 +9,7 @@
 //   [data-manifesto-slot]             final size/position, stays in the flow
 //     [data-manifesto-media]          animated wrapper (absolute, 100% × 100%)
 //       img
+// [data-manifesto-marquee-item]       marquee items (infinite loop, anywhere on the page)
 //
 // Anti-flash CSS (page head custom code):
 // html.w-mod-js [data-animation="manifesto-hero"] { visibility: hidden; }
@@ -22,6 +23,7 @@ const MANIFESTO_HERO_SELECTOR = '[data-animation="manifesto-hero"]'
 const SLOT_SELECTOR = '[data-manifesto-slot]'
 const MEDIA_SELECTOR = '[data-manifesto-media]'
 const REVEAL_SELECTOR = '[data-manifesto-reveal]'
+const MARQUEE_ITEM_SELECTOR = '[data-manifesto-marquee-item]'
 const MOBILE_BREAKPOINT = 480
 
 const CONFIG = {
@@ -36,6 +38,7 @@ const CONFIG = {
 const logger = createLogger('manifesto-hero')
 
 let manifestoHeroAnimationInitialized = false
+let manifestoMarqueeInitialized = false
 
 // Slot position relative to the section (reliable during the pin too)
 function getSlotOffset(section, slot) {
@@ -123,7 +126,27 @@ function createManifestoHeroAnimation(section) {
     gsap.set(section, { visibility: 'visible' })
 }
 
+// Same infinite loop as the hero marquee (src/animations/hero.js)
+function initManifestoMarqueeAnimation(scope = document) {
+    if (manifestoMarqueeInitialized) return
+
+    const marqueeItems = scope.querySelectorAll(MARQUEE_ITEM_SELECTOR)
+    logger.log('marquee items found:', marqueeItems.length)
+    if (!marqueeItems.length) return
+
+    gsap.to(marqueeItems, {
+        x: '-100%',
+        ease: 'none',
+        repeat: -1,
+        duration: 50
+    })
+
+    manifestoMarqueeInitialized = true
+}
+
 export function initManifestoHeroAnimation(scope = document) {
+    initManifestoMarqueeAnimation(scope)
+
     if (manifestoHeroAnimationInitialized) return
 
     const elements = scope.querySelectorAll(MANIFESTO_HERO_SELECTOR)
